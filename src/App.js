@@ -25,7 +25,7 @@ function App() {
     <div >
        <form >
         <input type="text" onChange={drop} value={arr} />
-        <label for="">thu lam xem</label>
+        <label for="">thoi ve lai tu dau</label>
         <input type="file" /> 
         <button type="submit" onClick={clich} >sumit</button>
         <ul >
