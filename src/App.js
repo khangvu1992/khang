@@ -1,54 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import axios from 'axios'
 
 function App() {
-  const [arr, setarr] = useState("");
-  const [arr2, setarr2] = useState([""]);
-  const baseUrl = 'http://localhost:3001/notes'
-
-  const getAll = ()=>{
-     const lay = axios.get(baseUrl)
-     const nonExisting = {
-      
-      content: 'This note is not saved to server',
-      
-    }
-    return lay.then(response => response.data())
-  }
-
-  const m =getAll()
-  console.log(m)
-
-  const drop=(e)=>{
-    const a= e.target.value
-    console.log(a)
-   setarr(a)
-   
+  const [notes, setNotes] = useState([])
   
-   
-   
-  }
-  
-
-  const clich = (e)=>{
-    e.preventDefault();
-
-    setarr2(arr2.concat(arr))
-    setarr("")
-     console.log(arr2)}
+  useEffect(() => {
+    console.log('effect')
+    axios
+      .get('http://localhost:3000/ten')
+      .then(response => {
+        console.log('promise fulfilled')
+        setNotes(response.data)
+      })
+  }, [])
+ 
   return (
     <div >
-       <form >
-        <input type="text" onChange={drop} value={arr} />
-        <label for="">com mit xem nao</label>
-        <input type="file" /> 
-        <button type="submit" onClick={clich} >sumit</button>
-        <ul >
-          
-        {arr2.map(x=>( <li>{x}</li>)) }
-        </ul>
-    
-      </form>
+     ghgh
+      {notes.he}
     </div>
   );
 }
