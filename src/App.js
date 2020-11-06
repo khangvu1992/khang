@@ -1,8 +1,23 @@
 import React, { useState } from 'react';
-
+import axios from 'axios'
 
 function App() {
   const [arr, setarr] = useState("");
+  const [arr2, setarr2] = useState([""]);
+  const baseUrl = 'http://localhost:3001/notes'
+
+  const getAll = ()=>{
+     const lay = axios.get(baseUrl)
+     const nonExisting = {
+      
+      content: 'This note is not saved to server',
+      
+    }
+    return lay.then(response => response.data())
+  }
+
+  const m =getAll()
+  console.log(m)
 
   const drop=(e)=>{
     const a= e.target.value
@@ -13,7 +28,7 @@ function App() {
    
    
   }
-  const [arr2, setarr2] = useState([""]);
+  
 
   const clich = (e)=>{
     e.preventDefault();
@@ -29,6 +44,7 @@ function App() {
         <input type="file" /> 
         <button type="submit" onClick={clich} >sumit</button>
         <ul >
+          
         {arr2.map(x=>( <li>{x}</li>)) }
         </ul>
     
